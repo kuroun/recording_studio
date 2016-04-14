@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160414210356) do
 
   create_table "bookings", force: true do |t|
     t.integer  "user_id"
-    t.integer  "recoding_session_id"
+    t.integer  "recording_session_id"
     t.date     "recording_date"
     t.string   "comment"
     t.datetime "created_at"

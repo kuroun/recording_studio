@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @recording_session.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @recording_session.end_time %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @recording_session.description %>
+</p>
+
+<%= link_to 'Edit', edit_recording_session_path(@recording_session) %> |
+<%= link_to 'Back', recording_sessions_path %>

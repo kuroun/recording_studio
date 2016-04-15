@@ -12,4 +12,10 @@ RSpec.describe RecordingSession, type: :model do
     expect(session1).to_not be_valid
     expect(session2).to_not be_valid
   end
+  it 'opens for bookings from 9am to 9pm every week day' do
+    session1 = RecordingSession.create(:start_time => '8:00', :end_time => '08:30')
+    session2 = RecordingSession.create(:start_time => '21:00', :end_time => '21:30')
+    expect(session1).to_not be_valid
+    expect(session2).to_not be_valid
+  end
 end

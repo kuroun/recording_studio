@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <h3>Room: <%=Room.find(session[:room_id]).room_name %></h3>
+  <div class="field">
+    <%= f.hidden_field :room_id, :value => session[:room_id] %>
+  </div>
   <div class="field">
     <%= f.label :start_time %><br>
     <%= f.time_select :start_time %>

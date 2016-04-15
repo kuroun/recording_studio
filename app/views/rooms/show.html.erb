@@ -33,7 +33,7 @@
 			<tr>
 				<td><%= s.start_time.to_s(:time) + " - " + s.end_time.to_s(:time) %></td>
 				<td><%= s.description %></td>
-				<td><%= link_to "Cancel Booking", s, method: :delete, data: { confirm: 'Are you sure?' }%></td>
+				<td><%= link_to 'Edit', edit_recording_session_path(s) %> | <%= link_to "Destroy", s, method: :delete, data: { confirm: 'Are you sure?' }%></td>
 			</tr>
 			<% end %>
 		</tbody>

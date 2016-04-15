@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admins/index'
+
   resources :rooms
 
   get 'users/login', :as => :login 
@@ -6,9 +8,9 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'request_booking_data', :as => :request_booking_data, :to => 'bookings#request_booking_data'
   delete 'cancel_booking', :as => :delete_by_admin, :to => 'bookings#delete_by_admin'
-  resources :bookings
+  resources :bookings, :except => [:edit,:show]
 
-  resources :recording_sessions
+  resources :recording_sessions, :except => [:show]
 
   resources :users
   

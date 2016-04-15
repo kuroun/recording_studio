@@ -4,6 +4,7 @@ class RecordingSession < ActiveRecord::Base
 	validate :valid_duration
 	validate :close_for_lunch
 	validate :morning_evening_close
+	validates :room_id, :presence => true
 
 	scope :query_record_session, -> (date) {where.not("id IN(?)", Booking.select(:recording_session_id).where("recording_date =?", date)).where("room_id IN(?)",Room.select(:id).where("status =?","used"))}
 

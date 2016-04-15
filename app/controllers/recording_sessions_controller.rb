@@ -56,7 +56,7 @@ class RecordingSessionsController < ApplicationController
   def destroy
     @recording_session.destroy
     respond_to do |format|
-      format.html { redirect_to recording_sessions_url, notice: 'Recording session was successfully destroyed.' }
+      format.html { redirect_to room_path(:id => session[:room_id]), notice: 'Recording session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class RecordingSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recording_session_params
-      params.require(:recording_session).permit(:start_time, :end_time, :description)
+      params.require(:recording_session).permit(:room_id,:start_time, :end_time, :description)
     end
 end

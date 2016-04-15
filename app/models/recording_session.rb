@@ -1,4 +1,5 @@
 class RecordingSession < ActiveRecord::Base
+	belongs_to :room
 	has_many :bookings
 	validate :valid_duration
 	validate :close_for_lunch

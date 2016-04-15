@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rooms
+
   get 'users/login', :as => :login 
   get 'users/login_process', :as => :login_process, :to => 'users#login_process'
   get 'home/index'

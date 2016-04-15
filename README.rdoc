@@ -3,23 +3,17 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-* Ruby version:
+* Rails version: '4.1.7'
 
-* System dependencies
+* To live up the application:
+<tt>bundle install</tt>
 
-* Configuration
+<tt>rake db:create</tt>
 
-* Database creation
+<tt>rake db:migrate</tt>
 
-* Database initialization
+<tt>rake db:seed</tt>
 
-* How to run the test suite
+* How to run the test suite:
+<tt>rspec</tt>
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

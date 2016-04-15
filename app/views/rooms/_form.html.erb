@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status %>
+     <%= f.select :status, [['Used','used'], ['Repair','repair'], ['Unused','unused']], { include_blank: true },{} %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 room1 = {room_name: '1', status: 'repair'}
-room2 = {room_name: '2', status: 'use'}
+room2 = {room_name: '2', status: 'used'}
 room3 = {room_name: '3', status: 'unused'}
 Room.create([room1, room2, room3]) if(Room.all.empty?)
 Room.all.each do |r|

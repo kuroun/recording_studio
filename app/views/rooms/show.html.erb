@@ -14,6 +14,28 @@
   <strong>Description:</strong>
   <%= @room.description %>
 </p>
-
+<% session[:room_id] = @room.id %>
+<%= link_to 'Back', rooms_path %> |
 <%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Add new session', new_recording_session_path %>
+
+<div class="tbl">
+	<h2>Session List</h2>
+	<table>
+		
+		<thead>
+			<th>Session</th>
+			<th>Description</th>
+			<th>Action</th>
+		</thead>	
+		<tbody>
+			<% RecordingSession.where(:room_id =>  @room.id ).order('start_time DESC').each do |s| %>
+			<tr>
+				<td><%= s.start_time.to_s(:time) + " - " + s.end_time.to_s(:time) %></td>
+				<td><%= s.description %></td>
+				<td><%= link_to "Cancel Booking", s, method: :delete, data: { confirm: 'Are you sure?' }%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

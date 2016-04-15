@@ -27,6 +27,7 @@
 		<thead>
 			<th>Date</th>
 			<th>Session</th>
+			<th>Room</th>
 			<th>Status</th>
 			<th>Comment</th>
 			<th>Action</th>
@@ -36,6 +37,7 @@
 			<tr>
 				<td><%= b.recording_date %></td>
 				<td><%= b.recording_session.start_time.to_s(:time) + " - " + b.recording_session.end_time.to_s(:time) %></td>
+				<td><%= b.recording_session.room.room_name %></td>
 				<td><%= booking_status(b.recording_date) %></td>
 				<td><%= b.comment %></td>
 				<td><%= link_to "Cancel Booking", b, method: :delete, data: { confirm: 'Are you sure?' }%></td>

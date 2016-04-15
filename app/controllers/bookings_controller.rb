@@ -66,8 +66,14 @@ class BookingsController < ApplicationController
 
   def request_booking_data
     date = params[:dateData].to_date
-    @available_record_sessions = RecordingSession.query_record_session(date)
-    @room_info = Room.get_room_info(date)
+    if(!Booking.all.empty?)
+      @available_record_sessions = RecordingSession.query_record_session(date)
+      @room_info = Room.get_room_info(date)
+    else
+      @available_record_sessions = RecordingSession.all
+      @room_info = Room.all
+    end
+    
     render json: {:session => @available_record_sessions, :room => @room_info}
     #render json: @available_record_sessions
     

@@ -56,12 +56,20 @@
           dataType : "json",
           success : function(data, textStatus, jqXHR) {
             console.log(data);
-            $.each(data,function(index, value){
+            $.each(data.session,function(index, value){
                 var s = value.start_time.substr(11, 5);
                 var e = value.end_time.substr(11, 5);
+                var r = "";
+                $.each(data.room,function(i,v){
+                      if(value.room_id == v.id){
+                          r = v.room_name;
+                          return false;
+                      }
+                    }
+                  );
                 $('#session').append($("<option></option>")
                     .attr("value",value.id)
-                    .text(s + " - " + e));
+                    .text(s + " - " + e + " - Room " + r));
               }
             );
           },

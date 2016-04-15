@@ -29,9 +29,10 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        session.delete(:user_id)
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        id = session[:user_id]
+        format.html { redirect_to user_path(:id => id), notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
+        session.delete(:user_id)
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -58,7 +59,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to user_path(:id => session[:user_id]), notice: 'Booking was successfully canceled.' }
       format.json { head :no_content }
     end
   end

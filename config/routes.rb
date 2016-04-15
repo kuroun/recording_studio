@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'users/login', :as => :login 
-
+  get 'users/login_process', :as => :login_process, :to => 'users#login_process'
   get 'home/index'
-
+  get 'request_booking_data', :as => :request_booking_data, :to => 'bookings#request_booking_data'
+  
   resources :bookings
 
   resources :recording_sessions

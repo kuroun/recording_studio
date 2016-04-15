@@ -3,7 +3,8 @@ class RecordingSession < ActiveRecord::Base
 	validate :valid_duration
 	validate :close_for_lunch
 	validate :morning_evening_close
-	
+
+	scope :query_record_session, -> (date) {where.not("id IN(?)", Booking.select(:recording_session_id).where("recording_date =?", date))}
 	def valid_duration
 		errors.add(:base,'each session is 2 hour 45 minutes long') if ((end_time.to_i - start_time.to_i) > (2.hours.to_i + 45.minutes.to_i))
 	end

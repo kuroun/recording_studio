@@ -1,3 +1,13 @@
+<!--disable data turbolink here that conflict with jquery ui -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd'});
+  });
+</script>
+
 <%= form_for(@booking) do |f| %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
@@ -11,21 +21,21 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  </div> 
+
+  <div class="field">
+    <label>Recording Date</label><br>
+    <input type="text" id="datepicker" name="booking[recording_date]"></p>
   </div>
-  <!-- <div class="field">
-    <%= f.hidden_field :user_id, :value => params[:user_id] %>
-  </div> -->
-  
   <div class="field">
     <%= f.label :recording_session_id %><br>
-    <%= f.text_field :recording_session_id %>
+    <select id="session" name="booking[recording_session_id]">
+      <option value="">Please select:</option>
+      
+    </select>
   </div>
-  <div class="field">
-    <%= f.label :recording_date %><br>
-    <%= f.date_select :recording_date %>
-  </div>
+  
   <div class="field">
     <%= f.label :comment %><br>
     <%= f.text_field :comment %>
@@ -34,3 +44,31 @@
     <%= f.submit %>
   </div>
 <% end %>
+<script>
+  $('#datepicker').change(function() {
+        dateData = $('#datepicker').val();
+        $('#session').empty();
+        $.ajax({
+          url : "/request_booking_data",
+          type : "GET",
+          data : {dateData : dateData},
+          contentType : "application/json; charset=utf-8",
+          dataType : "json",
+          success : function(data, textStatus, jqXHR) {
+            console.log(data);
+            $.each(data,function(index, value){
+                var s = value.start_time.substr(11, 5);
+                var e = value.end_time.substr(11, 5);
+                $('#session').append($("<option></option>")
+                    .attr("value",value.id)
+                    .text(s + " - " + e));
+              }
+            );
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+            alert("error");
+            
+          }
+        });
+      });
+</script>

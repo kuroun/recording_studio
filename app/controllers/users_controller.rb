@@ -64,6 +64,18 @@ class UsersController < ApplicationController
   def login
   end
 
+  def login_process
+    @user = User.find_by_contact_number(params[:contact_number])
+    respond_to do |format|
+      if(@user.nil?)
+        format.html { redirect_to :login , alert: 'User cannot be found.' }
+      else
+        format.html { redirect_to @user , notice: 'Login successfully' }
+      end
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

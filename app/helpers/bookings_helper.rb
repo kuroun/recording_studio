@@ -6,7 +6,7 @@ module BookingsHelper
       "Expired"
     else
       diff = (date - Date.today).to_i
-      "in the next" + diff + " day(s)."
+      "in the next " + diff.to_s + " day(s)."
     end
   end
 end

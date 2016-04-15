@@ -15,6 +15,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @get_available_sessions = RecordingSession.where()
   end
 
   # GET /bookings/1/edit
@@ -28,6 +29,7 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
+        session.delete(:user_id)
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
@@ -59,6 +61,12 @@ class BookingsController < ApplicationController
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def request_booking_data
+    @available_record_sessions = RecordingSession.query_record_session(params[:dateData].to_date)
+    render json: @available_record_sessions
+    
   end
 
   private

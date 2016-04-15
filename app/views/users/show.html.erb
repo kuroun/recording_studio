@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -16,4 +17,24 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', home_index_path %>
+<div class="tbl">
+	<h2>My Booking List</h2>
+	<table>
+		
+		<thead>
+			<th>Date</th>
+			<th>Session</th>
+			<th>Status</th>
+			<th>Comment</th>
+		</thead>	
+		<tbody>
+			<% Booking.where(:user_id =>  @user.id ).order('recording_date DESC').each do |b| %>
+				<td><%= b.recording_date %></td>
+				<td><%= b.recording_session.start_time.to_s(:time) + " - " + b.recording_session.end_time.to_s(:time) %></td>
+				<td><%= booking_status(b.recording_date) %></td>
+				<td><%= b.comment %></td>
+			<% end %>
+		</tbody>
+	</table>
+</div>

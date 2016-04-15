@@ -19,3 +19,7 @@
 #main h1 {
   text-align: center;
 }
+th,td {
+	border: 1px solid;
+	padding: 10px 3px;
+}

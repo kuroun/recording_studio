@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show, :edit, :update, :index]
   # GET /bookings
   # GET /bookings.json
   def index
@@ -19,8 +19,8 @@ class BookingsController < ApplicationController
   end
 
   # GET /bookings/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /bookings
   # POST /bookings.json
@@ -42,17 +42,17 @@ class BookingsController < ApplicationController
 
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @booking.update(booking_params)
+  #       format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @booking }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @booking.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /bookings/1
   # DELETE /bookings/1.json

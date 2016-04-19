@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations"  } do
+    get '/users/sign_out' => 'users/sessions#destroy' 
+  end
   get 'admins/index'
 
   resources :rooms

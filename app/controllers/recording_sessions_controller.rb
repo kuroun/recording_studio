@@ -1,6 +1,5 @@
 class RecordingSessionsController < ApplicationController
   before_action :set_recording_session, only: [:show, :edit, :update, :destroy]
-
   # GET /recording_sessions
   # GET /recording_sessions.json
   def index

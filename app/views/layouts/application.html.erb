@@ -9,9 +9,14 @@
 <body>
 <div id="main">
 	<h1> SK Recording Studio</h1>
-	<%= yield %>	
+	<div id="sign_out">
+		<p class="notice"><%= notice%></p>
+		<p class="alert"><%= alert%></p>
+		<%= (link_to "Sign out", destroy_user_session_path) if(user_signed_in?) %>
+	</div>
+	<div id="content">
+		<%= yield %>
+	</div>	
 </div>
-
-
 </body>
 </html>

@@ -23,3 +23,10 @@ th,td {
 	border: 1px solid;
 	padding: 7px 3px;
 }
+#sign_out {
+	float: right;
+}
+
+#content {
+	clear: both;
+}

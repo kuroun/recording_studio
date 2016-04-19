@@ -1,6 +1,13 @@
 <div id="home">
 	<div id="navigate">
-		<%=link_to "Return User", login_path %> | <%=link_to "New User", new_user_path %> | <%=link_to "Admin", admins_index_path %>
+		
+		<% if(!user_signed_in?) %>
+			<%=link_to "Return User", new_user_session_path%> 
+			| <%=link_to "New User", new_user_registration_path %> 
+		<% else %>
+			<div>Welcome!</div>
+			<%=link_to "#{current_user.contact_name}: My Page", user_path(current_user.id) %>
+		<% end %>
 
 
 	</div>
